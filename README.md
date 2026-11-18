@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="https://raw.githubusercontent.com/lastexam-org/lastexam/main/assets/avatar.png" alt="LastExam logo" width="160" height="160">
+</p>
+
 # LastExam
 
 [![PyPI](https://img.shields.io/pypi/v/lastexam)](https://pypi.org/project/lastexam/)
