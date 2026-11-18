@@ -1,0 +1,265 @@
+{
+  "schema_version": 1,
+  "id": "quantum-seed-v1",
+  "version": "0.1.0",
+  "description": "Twelve reproducible seed tasks across six quantum domains. Difficulty is uncalibrated; not a frontier difficulty claim.",
+  "tasks": [
+    {
+      "id": "quantum.computing.qpe",
+      "domain": "quantum_computing",
+      "title": "Finite-register phase estimation",
+      "difficulty": "uncalibrated",
+      "prompt": "Ideal quantum phase estimation uses three counting qubits and an exact eigenstate of U with eigenvalue exp(2*pi*i/3). Use the inverse QFT convention for which a phase phi is peaked at integer 8*phi. Return a JSON list of all eight probabilities P(y), y=0,...,7, with y interpreted in ordinary binary (no output bit reversal).",
+      "grader": {
+        "type": "numeric",
+        "atol": 1e-07,
+        "rtol": 1e-06
+      },
+      "reference": [
+        0.01562500000000002,
+        0.03162183248926293,
+        0.17493988160479138,
+        0.6878376625896214,
+        0.04687500000000002,
+        0.01861864109157263,
+        0.012560118395208878,
+        0.011921863829542988
+      ],
+      "reference_method": "Squared finite geometric sum for a length-8 Fourier transform.",
+      "provenance": "Original, analytically or numerically constructed LastExam seed task; no external dataset copied."
+    },
+    {
+      "id": "quantum.computing.grover",
+      "domain": "quantum_computing",
+      "title": "Grover search with multiple marked states",
+      "difficulty": "uncalibrated",
+      "prompt": "A uniform superposition over 128 basis states has three marked states. Apply five ideal Grover iterations, each consisting of a marked-state phase flip followed by diffusion 2|s><s|-I. Return the total success probability as a JSON number.",
+      "grader": {
+        "type": "numeric",
+        "atol": 1e-07,
+        "rtol": 1e-06
+      },
+      "reference": 0.9856983397679344,
+      "reference_method": "sin^2((2r+1)*arcsin(sqrt(M/N))).",
+      "provenance": "Original, analytically or numerically constructed LastExam seed task; no external dataset copied."
+    },
+    {
+      "id": "quantum.information.entropy",
+      "domain": "quantum_information",
+      "title": "Entropy of a noisy entangled state",
+      "difficulty": "uncalibrated",
+      "prompt": "Let rho = 0.6*|Phi+><Phi+| + 0.4*I_4/4, where |Phi+>=(|00>+|11>)/sqrt(2). Return [S(rho), S(rho_A), I(A:B)] in bits, using von Neumann entropy and I(A:B)=S(rho_A)+S(rho_B)-S(rho).",
+      "grader": {
+        "type": "numeric",
+        "atol": 1e-07,
+        "rtol": 1e-06
+      },
+      "reference": [
+        1.3567796494470397,
+        1.0,
+        0.6432203505529603
+      ],
+      "reference_method": "rho eigenvalues are [0.7,0.1,0.1,0.1]; both marginals are I/2.",
+      "provenance": "Original, analytically or numerically constructed LastExam seed task; no external dataset copied."
+    },
+    {
+      "id": "quantum.information.negativity",
+      "domain": "quantum_information",
+      "title": "Partial-transpose entanglement",
+      "difficulty": "uncalibrated",
+      "prompt": "For rho = 0.7*|Psi-><Psi-|+0.3*I_4/4, |Psi->=(|01>-|10>)/sqrt(2), return [negativity, logarithmic_negativity]. Define negativity=(||rho^(T_B)||_1-1)/2 and logarithmic_negativity=log2(||rho^(T_B)||_1).",
+      "grader": {
+        "type": "numeric",
+        "atol": 1e-07,
+        "rtol": 1e-06
+      },
+      "reference": [
+        0.275,
+        0.632268215499513
+      ],
+      "reference_method": "Partial transpose has one eigenvalue (1-3p)/4 and three eigenvalues (1+p)/4.",
+      "provenance": "Original, analytically or numerically constructed LastExam seed task; no external dataset copied."
+    },
+    {
+      "id": "quantum.manybody.ising",
+      "domain": "quantum_many_body",
+      "title": "Open transverse-field Ising chain",
+      "difficulty": "uncalibrated",
+      "prompt": "Four spin-1/2 sites have H=-sum_{j=0}^{2} Z_j Z_{j+1} - 0.7*sum_{j=0}^{3} X_j, with Pauli matrices of eigenvalues +/-1, open boundaries and units J=1. Return all 16 eigenvalues sorted in ascending order, including multiplicities.",
+      "grader": {
+        "type": "numeric",
+        "atol": 1e-07,
+        "rtol": 1e-06
+      },
+      "reference": [
+        -3.8729833462074144,
+        -3.5972234830498047,
+        -2.1932622231248216,
+        -1.9175023599672094,
+        -1.275759863157611,
+        -1.0000000000000002,
+        -0.6797211230825948,
+        -0.4039612599249842,
+        0.40396125992498344,
+        0.6797211230825952,
+        0.9999999999999998,
+        1.2757598631576124,
+        1.9175023599672085,
+        2.193262223124821,
+        3.5972234830498064,
+        3.8729833462074144
+      ],
+      "reference_method": "Exact dense diagonalization of the 16x16 Kronecker-product Hamiltonian.",
+      "provenance": "Original, analytically or numerically constructed LastExam seed task; no external dataset copied."
+    },
+    {
+      "id": "quantum.manybody.heisenberg",
+      "domain": "quantum_many_body",
+      "title": "Periodic antiferromagnetic Heisenberg chain",
+      "difficulty": "uncalibrated",
+      "prompt": "Four spin-1/2 sites have H=sum_{j=0}^{3} S_j dot S_{(j+1) mod 4}, with S=Pauli/2 and J=1. Each of the four ring edges appears once. Return all 16 eigenvalues sorted in ascending order, including multiplicities.",
+      "grader": {
+        "type": "numeric",
+        "atol": 1e-07,
+        "rtol": 1e-06
+      },
+      "reference": [
+        -2.0,
+        -1.0000000000000004,
+        -1.0,
+        -0.9999999999999998,
+        -5.551115123125783e-17,
+        -4.3180842775472224e-80,
+        0.0,
+        2.7199632713416765e-19,
+        5.758240773302833e-18,
+        4.336808689942018e-17,
+        2.2196779369811192e-16,
+        0.9999999999999998,
+        0.9999999999999999,
+        1.0,
+        1.0,
+        1.0000000000000004
+      ],
+      "reference_method": "Exact dense diagonalization with the S=Pauli/2 normalization.",
+      "provenance": "Original, analytically or numerically constructed LastExam seed task; no external dataset copied."
+    },
+    {
+      "id": "quantum.chemistry.subspace",
+      "domain": "quantum_chemistry",
+      "title": "Two-determinant variational subspace",
+      "difficulty": "uncalibrated",
+      "prompt": "In an orthonormal two-determinant basis, a projected electronic Hamiltonian (hartree) is [[-1.1,0.18],[0.18,-0.4]]. Return [ground_state_energy, probability_of_second_determinant_in_ground_state]. The energy is that of this projected Hamiltonian, with no additional nuclear constant.",
+      "grader": {
+        "type": "numeric",
+        "atol": 1e-07,
+        "rtol": 1e-06
+      },
+      "reference": [
+        -1.1435733730830886,
+        0.05535609884092646
+      ],
+      "reference_method": "Analytic eigenpair of a real symmetric 2x2 matrix.",
+      "provenance": "Original, analytically or numerically constructed LastExam seed task; no external dataset copied."
+    },
+    {
+      "id": "quantum.chemistry.hubbard",
+      "domain": "quantum_chemistry",
+      "title": "Correlated Hubbard dimer",
+      "difficulty": "uncalibrated",
+      "prompt": "The two-site Hubbard Hamiltonian is H=-t*sum_sigma(c\u2020_(1,sigma)c_(2,sigma)+h.c.)+U*sum_i n_(i,up)n_(i,down), t=1, U=4, exactly two electrons, no extra constant. Return [ground_state_energy, total_double_occupancy], where total_double_occupancy=<n_(1,up)n_(1,down)+n_(2,up)n_(2,down)>.",
+      "grader": {
+        "type": "numeric",
+        "atol": 1e-07,
+        "rtol": 1e-06
+      },
+      "reference": [
+        -0.8284271247461903,
+        0.14644660940672627
+      ],
+      "reference_method": "Singlet ground energy (U-sqrt(U^2+16t^2))/2; Hellmann-Feynman derivative gives double occupancy.",
+      "provenance": "Original, analytically or numerically constructed LastExam seed task; no external dataset copied."
+    },
+    {
+      "id": "quantum.qec.repetition",
+      "domain": "quantum_error_correction",
+      "title": "Logical error under majority decoding",
+      "difficulty": "uncalibrated",
+      "prompt": "An 11-qubit repetition code protects against independent Pauli X errors with probability p=0.13 on every qubit. Syndrome measurement is perfect and decoding uses majority vote. Return the logical X failure probability; do not include phase errors.",
+      "grader": {
+        "type": "numeric",
+        "atol": 1e-07,
+        "rtol": 1e-06
+      },
+      "reference": 0.001239419514412758,
+      "reference_method": "Binomial upper tail from six through eleven flips.",
+      "provenance": "Original, analytically or numerically constructed LastExam seed task; no external dataset copied."
+    },
+    {
+      "id": "quantum.qec.steane",
+      "domain": "quantum_error_correction",
+      "title": "Steane CSS syndrome conventions",
+      "difficulty": "uncalibrated",
+      "prompt": "Use the Steane CSS code with binary parity-check matrix H whose column j (j=1,...,7) is the three-bit binary representation of j, least-significant bit first. Z stabilizers diagnose X errors and X stabilizers diagnose Z errors. An X error occurs on qubit 3 and a Z error on qubit 5 (labels 1-based). Return [Z_stabilizer_syndrome, X_stabilizer_syndrome], each a list of three integer bits in row order. A bit is 1 for anticommutation.",
+      "grader": {
+        "type": "exact"
+      },
+      "reference": [
+        [
+          1,
+          1,
+          0
+        ],
+        [
+          1,
+          0,
+          1
+        ]
+      ],
+      "reference_method": "CSS syndromes are H*e_X and H*e_Z over GF(2).",
+      "provenance": "Original, analytically or numerically constructed LastExam seed task; no external dataset copied."
+    },
+    {
+      "id": "quantum.compilation.routing",
+      "domain": "quantum_compilation",
+      "title": "Exact minimum-SWAP routing",
+      "difficulty": "uncalibrated",
+      "prompt": "Logical qubits 0,1,2,3 initially occupy physical vertices 0,1,2,3 of the path 0--1--2--3. Execute CNOTs (0,3),(0,2),(1,3),(0,1) in that exact order. A CNOT is legal only between adjacent physical vertices, in either direction. Only adjacent SWAPs may change the mapping. Final mapping is unrestricted; CNOTs cannot be decomposed, bridged, cancelled, or reordered. Return the minimum total number of SWAPs as a JSON integer.",
+      "grader": {
+        "type": "exact"
+      },
+      "reference": 4,
+      "reference_method": "Breadth-first search on mapping permutations and next-gate index; legal gates advance at zero cost.",
+      "provenance": "Original, analytically or numerically constructed LastExam seed task; no external dataset copied."
+    },
+    {
+      "id": "quantum.compilation.phase",
+      "domain": "quantum_compilation",
+      "title": "Phase-polynomial normalization",
+      "difficulty": "uncalibrated",
+      "prompt": "A diagonal three-qubit circuit multiplies |x> by exp(i*pi/4*sum_j a_j*(m_j dot x mod 2)), where masks m are integers encoding nonzero three-bit vectors. The (mask,coefficient) terms are [(1,1),(3,3),(7,1),(3,6),(1,7),(5,-1),(7,2)]. Merge identical masks, reduce coefficients modulo 8 to integers 0..7, and remove zero coefficients. Return {\"terms\": [[mask,coefficient],...], \"odd_terms\": count}, sorting terms by mask. odd_terms counts odd coefficients in this fixed merged representation; it is NOT a claim of globally minimal T count.",
+      "grader": {
+        "type": "exact"
+      },
+      "reference": {
+        "terms": [
+          [
+            3,
+            1
+          ],
+          [
+            5,
+            7
+          ],
+          [
+            7,
+            3
+          ]
+        ],
+        "odd_terms": 3
+      },
+      "reference_method": "Coefficient aggregation modulo 8; this task fixes the representation and does not optimize over phase-polynomial identities.",
+      "provenance": "Original, analytically or numerically constructed LastExam seed task; no external dataset copied."
+    }
+  ]
+}
